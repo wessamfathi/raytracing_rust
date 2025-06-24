@@ -111,11 +111,15 @@ impl Vec3 {
     }
 
     pub fn print(&self) -> String {
+        let r = super::clamp(self.e[0], 0.0, 0.999);
+        let g = super::clamp(self.e[1], 0.0, 0.999);
+        let b = super::clamp(self.e[2], 0.0, 0.999);
+
         format!(
             "{} {} {}\n",
-            (255.99999 * self.e[0]) as i32,
-            (255.99999 * self.e[1]) as i32,
-            (255.99999 * self.e[2]) as i32
+            (256.0 * r) as i32,
+            (256.0 * g) as i32,
+            (256.0 * b) as i32
         )
     }
 }
