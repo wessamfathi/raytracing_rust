@@ -104,6 +104,16 @@ tags:
   - test
 ```
 
+```warp
+name: Open rendered image (macOS)
+description: Open the last rendered PPM in the default viewer
+command: open ./output/16.ppm
+tags:
+  - macos
+  - output
+  - viewer
+```
+
 High-level architecture
 - src/main.rs
   - Orchestrates rendering: image sizing, camera setup, scene generation, and parallel render loop.
