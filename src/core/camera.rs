@@ -20,7 +20,17 @@ pub struct Camera {
 }
 
 impl Camera {
-    pub fn new(look_from: Vec3, look_at: Vec3, v_up: Vec3, v_fov: f64, aspect: f64, aperture: f64, focus_dist: f64, open_time: f64, close_time: f64) -> Camera {
+    pub fn new(
+        look_from: Vec3,
+        look_at: Vec3,
+        v_up: Vec3,
+        v_fov: f64,
+        aspect: f64,
+        aperture: f64,
+        focus_dist: f64,
+        open_time: f64,
+        close_time: f64,
+    ) -> Camera {
         let lens_radius = aperture / 22.0;
         let theta = v_fov * PI / 180.0;
         let half_height = (theta / 2.0).tan();
@@ -29,7 +39,8 @@ impl Camera {
         let w = (look_from - look_at).unit_vector();
         let u = v_up.cross(w).unit_vector();
         let v = w.cross(u);
-        let lower_left_corner = origin - half_width * focus_dist * u - half_height * focus_dist * v - focus_dist * w;
+        let lower_left_corner =
+            origin - half_width * focus_dist * u - half_height * focus_dist * v - focus_dist * w;
         let horizontal = 2.0 * half_width * focus_dist * u;
         let vertical = 2.0 * half_height * focus_dist * v;
 
@@ -62,7 +73,9 @@ impl Camera {
         let time = self.open_time + core::random() * (self.close_time - self.open_time);
         Ray {
             origin: self.origin + offset,
-            direction: self.lower_left_corner + s * self.horizontal + t * self.vertical - self.origin - offset,
+            direction: self.lower_left_corner + s * self.horizontal + t * self.vertical
+                - self.origin
+                - offset,
             time,
         }
     }

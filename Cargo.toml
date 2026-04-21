@@ -8,7 +8,7 @@ edition = "2024"
 
 [dependencies]
 overload = "0.1.1"
-rand = "0.8"
+rand = "0.9.4"
 rayon = "1.10.0"
 
 [profile.release]

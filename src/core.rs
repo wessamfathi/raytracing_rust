@@ -1,4 +1,4 @@
-use rand::{Rng, thread_rng};
+use rand::{Rng, rng};
 use vec3::Vec3;
 
 pub mod camera;
@@ -19,14 +19,14 @@ fn degrees_to_radians(degrees: f64) -> f64 {
 
 pub fn random() -> f64 {
     // Returns a random real in [0,1)
-    let mut rng = thread_rng();
-    rng.gen_range(0.0..1.0)
+    let mut rng = rng();
+    rng.random_range(0.0..1.0)
 }
 
 fn random_range(min: f64, max: f64) -> f64 {
     // Returns a random real in [min,max])
-    let mut rng = thread_rng();
-    rng.gen_range(min..max)
+    let mut rng = rng();
+    rng.random_range(min..max)
 }
 
 pub fn random_in_unit_sphere() -> Vec3 {

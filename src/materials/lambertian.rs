@@ -1,7 +1,7 @@
-use crate::core::vec3::Vec3;
-use crate::core::ray::Ray;
 use crate::core::hit_record::HitRecord;
 use crate::core::random_in_unit_sphere;
+use crate::core::ray::Ray;
+use crate::core::vec3::Vec3;
 
 #[derive(Copy, Clone)]
 pub struct Lambertian {
