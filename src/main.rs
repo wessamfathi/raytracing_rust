@@ -1,17 +1,17 @@
-use rayon::prelude::*;
+use std::fs;
 use rtow_rust::core;
 use rtow_rust::materials::dielectric::Dielectric;
-use std::fs;
+use rayon::prelude::*;
 
 use core::INFINITY;
-use core::camera::*;
 use core::hit_record::HitRecord;
 use core::ray::Ray;
 use core::vec3::Vec3;
+use core::camera::*;
 
+use rtow_rust::materials::{self, Material};
 use materials::lambertian::Lambertian;
 use materials::metal::Metal;
-use rtow_rust::materials::{self, Material};
 use rtow_rust::shapes;
 use shapes::hittable_list::HittableList;
 use shapes::sphere::Sphere;
@@ -143,18 +143,19 @@ fn random_scene(world: &mut HittableList) {
                     center1 = center + Vec3::new(0.0, core::random() * 0.5, 0.0);
                     time0 = 0.0;
                     time1 = 1.0;
-                    Material::Lambertian(Lambertian::new(Vec3::new(
-                        core::random() * core::random(),
-                        core::random() * core::random(),
-                        core::random() * core::random(),
-                    )))
+                    Material::Lambertian(Lambertian::new(
+                        Vec3::new(
+                            core::random() * core::random(),
+                            core::random() * core::random(),
+                            core::random() * core::random()
+                            )))
                 } else if choose_mat < 0.95 {
                     // Metal
                     Material::Metal(Metal::new(
                         Vec3::new(
                             core::random() * core::random(),
-                            core::random() * core::random(),
-                            core::random() * core::random(),
+                             core::random() * core::random(),
+                            core::random() * core::random()
                         ),
                         0.5 * core::random(),
                     ))

@@ -1,7 +1,7 @@
 use crate::core;
-use crate::core::hit_record::HitRecord;
-use crate::core::ray::Ray;
 use crate::core::vec3::Vec3;
+use crate::core::ray::Ray;
+use crate::core::hit_record::HitRecord;
 
 use super::reflect;
 
@@ -32,8 +32,7 @@ impl Dielectric {
         if core::dot(ray_in.direction, hit_record.normal) > 0.0 {
             outward_normal = -hit_record.normal;
             ni_over_nt = self.ref_idx;
-            cosine = self.ref_idx * core::dot(ray_in.direction, hit_record.normal)
-                / ray_in.direction.length();
+            cosine = self.ref_idx * core::dot(ray_in.direction, hit_record.normal) / ray_in.direction.length();
         } else {
             outward_normal = hit_record.normal;
             ni_over_nt = 1.0 / self.ref_idx;
@@ -42,12 +41,7 @@ impl Dielectric {
 
         let scattered: Ray;
         let reflect_prob: f64;
-        if self.refract(
-            &ray_in.direction,
-            &outward_normal,
-            ni_over_nt,
-            &mut refracted,
-        ) {
+        if self.refract(&ray_in.direction, &outward_normal, ni_over_nt, &mut refracted) {
             reflect_prob = self.schlick(cosine);
         } else {
             reflect_prob = 1.0;
